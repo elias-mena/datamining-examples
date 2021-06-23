@@ -1,0 +1,10 @@
+*.csv
+*.pdf
+*.exe
+*.html
+*.css
+*.xlsx
+.RData
+win-library
+.Rhistory
+
