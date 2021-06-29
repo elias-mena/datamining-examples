@@ -4,7 +4,7 @@ install.packages("installr")
 library(installr)
 
 updater() 
-
+setwd("D:\\R")
 #############################################
 #Actualización para VSC
 install.packages("languageserver")
@@ -699,5 +699,4 @@ legalizeBar <- legalWeedAgeLimpio %>%
                     y = "Porcentaje respuestas en cada Categoría")
 
 legalizeBar
-
 
