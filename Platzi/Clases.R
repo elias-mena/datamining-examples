@@ -272,3 +272,99 @@ my_graph <- ggplot(orangeec, aes(`Internet penetration % population`,
 
 p = ggplotly(my_graph)
 p
+
+#------------------------------------------------------------
+              #Correlaciones con pairs
+
+pairs(mtcars[,2:6])
+
+newdata <- subset(mtcars,select=c(2,7:8,11,12))
+pairs(newdata)
+
+Eficientes <- filter(mtcars,mpg >= 30)
+Eficientes
+
+pairs(Eficientes[,2:6])
+
+install.packages("stringr")
+
+#Carros que empiezan con merc
+merc <- mtcars %>%
+  filter(str_detect(model,"Merc"))
+merc
+#
+pairs(merc[,2:6])
+
+#Confirmar correlaciones con función cor
+
+# Si se acerca a cero no hay correlación, si se acerca a 1 es positiva, si se acerca a -1 es negativa
+cor(merc[,2:6])
+#Si la correlación es negativa significa que a más de algo, menos de lo otro
+#Si es positiva significa que más de algo, más de lo otro
+#
+cor(newdata)
+
+
+
+#Correlaciones economía naranja
+
+pairs(orangeec[,2:6])
+
+#
+pairs(orangeec[,5:10])
+
+#
+newdata <- subset(orangeec,select=c(5,6,10,11,12,13))
+newdata
+
+pairs(newdata)
+
+#
+cor(orangeec[,2:6])
+
+#Quitar las variables NA
+cor(orangeec[,2:6],use="complete.obs")
+
+#
+cor(orangeec[,5:10],use="complete.obs")
+
+cor(newdata, use="complete.obs")
+
+#------------------------------------------------------------
+
+summary(mtcars)
+
+#
+sd(mtcars$mpg)
+mean(mtcars$mpg)
+
+
+# Coeficiente de variación  (es optimo menor a 25%)
+desv <- sd(mtcars$mpg)
+prom <- mean(mtcars$mpg)
+
+CoefVar <- (desv/prom)*100
+Coefvar
+
+#------------------------------------------------------------
+#                   Eliminar NA de los cálculos
+
+summary(orangeec)
+
+desv <- sd(orangeec$`Internet penetration % population`)# Standard deviation
+prom <- mean(orangeec$`Internet penetration % population`) #Promedio
+
+CoefVar <- (desv/prom)*100
+CoefVar
+
+#
+mean(orangeec$`Creat Ind % GDP`)#Aparece NA
+mean(orangeec$`Creat Ind % GDP`,na.rm=TRUE)#Remueve los NA
+
+prom <- mean(orangeec$`Creat Ind % GDP`,na.rm=TRUE)
+desv <- sd(orangeec$`Creat Ind % GDP`,na.rm=TRUE)
+
+CoefVar <- (desv/prom)*100
+CoefVar
+
+

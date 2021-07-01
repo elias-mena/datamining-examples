@@ -294,129 +294,129 @@ CrossTable(x=OD_Fetch$AgeBucket,
 setwd("C:/Luis Diego/DataMining/Statistical Analisys")
 getwd()
 
-curso1 <- read.csv(file = 'Curso1.txt', 
+Curso1 <- read.csv(file = 'Curso1.txt', 
                    stringsAsFactors = FALSE,
                    sep = ',')
 
-str(curso1)
+str(Curso1)
 
 ### Notas
-psych::describe(curso1$Nota)
-mfv(curso1$Nota) #modeest
+psych::describe(Curso1$Nota)
+mfv(Curso1$Nota) #modeest
 
-hist(curso1$Nota, 
-     main = "Hist notas del curso1",
+hist(Curso1$Nota, 
+     main = "Hist notas del Curso1",
      xlab = "Notas")
 
 # Histograma de densidad, agregar curva de asimetría
-hist(curso1$Nota,
+hist(Curso1$Nota,
      freq = F,
      xlab = "Nota",
      main = "Notas del Curso 1")
 
-dz <- density(curso1$Nota)
+dz <- density(Curso1$Nota)
 lines(dz, col = "red", lwd = 3)
 
 curve(dnorm(x, 
-            mean(curso1$Nota), 
-            sd(curso1$Nota)),
+            mean(Curso1$Nota), 
+            sd(Curso1$Nota)),
       col = "blue", 
       lwd = 3, 
       add = TRUE)
 
-qqnorm(curso1$Nota)
-qqline(curso1$Nota)
+qqnorm(Curso1$Nota)
+qqline(Curso1$Nota)
 
-kurtosi(curso1$Nota,na.rm=TRUE)
-semTools::kurtosis(curso1$Nota)
-psych::skew(curso1$Nota,na.rm=TRUE) #psych
-semTools::skew(curso1$Nota)
+kurtosi(Curso1$Nota,na.rm=TRUE)
+semTools::kurtosis(Curso1$Nota)
+psych::skew(Curso1$Nota,na.rm=TRUE) #psych
+semTools::skew(Curso1$Nota)
 
-IQR(curso1$Nota)
+IQR(Curso1$Nota)
 
 ###Edades
-psych::describe(curso1$Edad)
-mfv(curso1$Edad) #modeest
+psych::describe(Curso1$Edad)
+mfv(Curso1$Edad) #modeest
 
-hist(curso1$Edad, 
-     main = "Hist notas del curso1",
+hist(Curso1$Edad, 
+     main = "Hist notas del Curso1",
      xlab = "Edad")
 
 # Histograma de densidad, agregar curva de asimetría
-hist(curso1$Edad,
+hist(Curso1$Edad,
      freq = F,
      xlab = "Edad",
      main = "Edad Estudiantes")
 
-dz <- density(curso1$Edad)
+dz <- density(Curso1$Edad)
 lines(dz, col = "red", lwd = 3)
 
 curve(dnorm(x, 
-            mean(curso1$Edad), 
-            sd(curso1$Edad)),
+            mean(Curso1$Edad), 
+            sd(Curso1$Edad)),
       col = "blue", 
       lwd = 3, 
       add = TRUE)
 
-qqnorm(curso1$Edad)
-qqline(curso1$Edad)
+qqnorm(Curso1$Edad)
+qqline(Curso1$Edad)
 
 ##################################### Ejemplo Curso2
-curso2 <- read.csv(file = 'Curso2.txt', 
+Curso2 <- read.csv(file = 'Curso2.txt', 
                    stringsAsFactors = FALSE,
                    sep = ',')
 
 ###Notas
-describe(curso2$Nota)
-mfv(curso2$Nota) #modeest
+describe(Curso2$Nota)
+mfv(Curso2$Nota) #modeest
 
-hist(curso2$Nota, 
-     main = "Notas del curso 2",
+hist(Curso2$Nota, 
+     main = "Notas del Curso 2",
      xlab = "Notas")
 
 # Histograma de densidad, agregar curva de asimetría
-hist(curso2$Nota,
+hist(Curso2$Nota,
      freq = F,
      xlab = "Notas",
-     main = "Notas del curso 2")
+     main = "Notas del Curso 2")
 
-dz <- density(curso2$Nota)
+dz <- density(Curso2$Nota)
 lines(dz, col = "red", lwd = 3)
 
 curve(dnorm(x, 
-            mean(curso2$Nota), 
-            sd(curso2$Nota)),
+            mean(Curso2$Nota), 
+            sd(Curso2$Nota)),
       col = "blue", 
       lwd = 3, 
       add = TRUE)
 
-qqnorm(curso2$Nota)
-qqline(curso2$Nota)
+qqnorm(Curso2$Nota)
+qqline(Curso2$Nota)
 
 ###Edades
-describe(curso2$Edad)
-mfv(curso2$Edad) #modeest
+describe(Curso2$Edad)
+mfv(Curso2$Edad) #modeest
 
-hist(curso2$Edad, 
-     main = "Edades del curso 2",
+hist(Curso2$Edad, 
+     main = "Edades del Curso 2",
      xlab = "Edad")
 
 # Histograma de densidad, agregar curva de asimetría
-hist(curso2$Edad,
+hist(Curso2$Edad,
      freq = F,
      xlab = "Edad",
-     main = "Edades del curso 2")
+     main = "Edades del Curso 2")
 
-dz <- density(curso2$Edad)
+dz <- density(Curso2$Edad)
 lines(dz, col = "red", lwd = 3)
 
 curve(dnorm(x, 
-            mean(curso2$Edad), 
-            sd(curso2$Edad)),
+            mean(Curso2$Edad), 
+            sd(Curso2$Edad)),
       col = "blue", 
       lwd = 3, 
       add = TRUE)
 
-qqnorm(curso2$Nota)
-qqline(curso2$Nota)
+qqnorm(Curso2$Nota)
+qqline(Curso2$Nota)
 
