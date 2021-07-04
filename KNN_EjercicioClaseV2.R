@@ -109,6 +109,8 @@ Ingredient$FoodType <- factor(Ingredient$FoodType,
 
 str(Ingredient)
 
+summary(Ingredient)
+
 table(Ingredient$FoodType)
 prop.table(table(Ingredient$FoodType))
 prop.table(table(Ingredient$FoodType)) *100
