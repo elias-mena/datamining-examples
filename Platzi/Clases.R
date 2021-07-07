@@ -366,5 +366,120 @@ desv <- sd(orangeec$`Creat Ind % GDP`,na.rm=TRUE)
 
 CoefVar <- (desv/prom)*100
 CoefVar
+# -------------------------------------------------------------------
+              #     dplyr
+
+# Ajustando datos para mejorar visualizaciónes
+
+eficientes <- mean(mtcars$mpg)
+eficientes
+
+#Agregamos una nueva columna que los categoriza por debajo o encima del promedio
+mtcars <- mtcars %>%
+  mutate(Mas_eficientes = ifelse(mpg <eficientes,
+                                 "bajo promedio","en ó sobre promedio"))
+
+# Escojemos los carros que duran menos de 16 segundos en el cuarto de milla
+Mas_veloces <- mtcars[mtcars$qsec<16,] 
+Mas_veloces
+
+#Nueva columna con los carros más veloces
+mtcars <- mtcars %>%
+  mutate(Velocidad_cuarto_milla = ifelse(qsec < 16, 
+                                         "Menos 16 segs",
+                                         "Más de 15 segs"))
+
+#
+mtcars <- mtcars %>%
+  mutate(Peso_kilos=(wt/2)*100)
+
+mtcars <- mtcars %>%
+  mutate(Peso = ifelse(Peso_kilos <= 1500,
+                       "Livianos",
+                       "Pesados"))
+
+# Economía naranja
+
+orangeec <- orangeec %>%
+  mutate(Crecimiento_GDP = ifelse(GDP.Growth.. >= 2.5,
+                                  "2.5% ó más",
+                                  "Menos de 2.5%"))
+
+#
+orangeec <- orangeec %>%
+  mutate(Anaranjados = ifelse(Creat.Ind...GDP >= 2.5,
+                              "Más anaranjados",
+                              "Menos anaranjados"))
+
+# ranking
+orangeec %>%
+  arrange(desc(Creat.Ind...GDP))
+
+TopNaranjas <- orangeec %>%
+  filter(Country %in% c("Mexico", "Panamá","Argentina",
+                        "Colombia", "Brasil","Paraguay"))
+
+TopNaranjas
+
+#
+TopNaranjas %>%
+  arrange(desc(Creat.Ind...GDP))
 
 
+# -------------------------------------------------------------------
+
+          # Facet wrap
+
+mtcars %>%
+  arrange(desc(Peso_kilos))
+
+Mas_pesados <- mtcars %>%
+  filter(model %in% c("Lincoln Continental","Chrysler Imperial",
+                      "Cadillac Fleetwood","Merc 450SE"))
+Mas_pesados
+
+
+ggplot(Mas_pesados, aes(x=hp, y=mpg))+
+  geom_point()+
+  facet_wrap(~model)# Despliega una gráfica por cada modelo
+
+#
+ggplot(mtcars, aes(x=cyl, y=mpg, size=Peso_kilos))+
+  geom_point()+
+  facet_wrap(~ am)
+
+
+# Países que más aportan al pib desde la EN
+ggplot(TopNaranjas, aes(x=Internet.penetration...population,
+                        y=Services...GDP, size=GDP.PC))+
+  geom_point()+
+  facet_wrap(~Country)
+
+#
+ggplot(TopNaranjas, aes(x=Education.invest.GDP,
+                        y=Creat.Ind...GDP, size=Unemployment))+
+  geom_point()+
+  facet_wrap(~Country)
+
+#   Colores para los gráficos
+install.packages("RColorBrewer")
+library(RColorBrewer)
+
+#Instanciamos la paleta
+
+myColors <- brewer.pal(9,"Reds")
+
+ggplot(TopNaranjas, aes(x=Internet.penetration...population,
+                        y=GDP.PC, fill=Creat.Ind..GDP))+
+  geom_tile()+
+  facet_wrap(~ Country)+
+  scale_fill_gradientn(colors=myColors)
+
+#
+# -------------------------------------------------------------------
+# R Markdown
+install.packages("rmarkdown")
+library(rmarkdown)
+
+install.packages("knitr")
+library(knitr)

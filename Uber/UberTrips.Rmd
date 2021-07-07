@@ -1,0 +1,122 @@
+---
+title: "Uber Trips"
+author: "Elías Mena Segura"
+date: "7/5/2021"
+output: html_document
+---
+---
+
+## Depuración de los datos
+```{r message=FALSE}
+#Librerias a utilizar
+library(ggplot2)
+library(dplyr)
+library(plotly)
+library(lubridate)
+                  #---- Depuración de los datos ----
+
+# Cargamos el archivo orignal y lo exploramos
+trips_data <- data.table::fread(file = "trips_data.csv")
+
+
+# Filtramos los datos para eliminar los viajes cancelados
+filter_data <- subset(trips_data, `Trip or Order Status` == "COMPLETED") 
+
+# Transformamos las variables que vamos a analizar
+filter_data <- filter_data %>% 
+  mutate(`Product Type` = as.factor(`Product Type`)) %>% 
+  mutate(`Trip or Order Status` = as.factor(`Trip or Order Status`))%>% 
+  mutate(`Distance (miles)` = as.numeric(`Distance (miles)`)) %>%
+  mutate(`Fare Amount` = as.numeric(`Fare Amount`)) %>%
+  mutate(`Fare Currency` = as.factor(`Fare Currency`)) %>%
+  mutate(`Request Time` = as.Date(`Request Time`))
+
+# Seleccionamos y creamos las columnas del data_frame para el estudio
+
+ProductType <- filter_data$`Product Type`
+
+OrderStatus <- filter_data$`Trip or Order Status`
+
+Distance <- filter_data$`Distance (miles)`
+
+FareAmount <- filter_data$`Fare Amount`
+
+FareCurrency <- filter_data$`Fare Currency`
+
+# Fechas
+RequestTimeDate <- filter_data$`Request Time`
+
+MonthName <- months(RequestTimeDate)
+
+DayOfWeek <- weekdays(RequestTimeDate)
+
+WeekOfYear <- paste(year(RequestTimeDate),week(RequestTimeDate),sep="-")
+
+# Creamos el data_frame
+clean_data <- data.frame(ProductType = ProductType, OrderStatus = OrderStatus,
+                         RequestTimeDate = RequestTimeDate, Distance = Distance,
+                         FareAmount = FareAmount, FareCurrency = FareCurrency,
+                         MonthName = MonthName, DayOfWeek = DayOfWeek,
+                         WeekOfYear = WeekOfYear)
+
+```
+---
+# Análisis Exploratorio de Datos
+
+## Cantidad de viajes según el tipo de producto
+```{r}
+ggplotly(
+  ggplot(clean_data,aes(x =ProductType, fill = ProductType))+
+  geom_bar(fill="lightblue",color="black")+  
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  labs(x = "Product Type", y = "Número de viajes"))
+
+
+---
+
+## Porcentaje de viajes según el tipo de producto
+```{r}
+# Gráfico de porcentaje
+ggplot(clean_data, aes(x = ProductType)) +  
+  geom_bar(aes(y = (..count..)/sum(..count..)),
+           fill="lightblue",color="black")+
+  scale_y_continuous(labels=scales::percent)+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  labs(x = "Product Type", y = "Porcentaje")
+ggplotly(ggplot(data=clean_data, aes(x=MonthName, y=FareAmount, group=1)) +
+  geom_path()+
+  geom_point())
+
+
+```
+---
+
+## Frecuencia de viajes según el día de la semana
+```{r}
+# Días
+ggplot(clean_data, aes(x = DayOfWeek, fill = DayOfWeek)) +
+  geom_bar(width = 1, color="black")+ coord_polar()+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  labs(x = "Day of Week", y = "Frecuency")
+```
+---
+
+## Frecuencia de viajes según el mes
+```{r}
+# Meses
+ggplot(clean_data, aes(x = MonthName, fill = MonthName)) +
+  geom_bar(width = 1, color="black")+ coord_polar()+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  labs(x = "Day of Week", y = "Frecuency")
+```
+---
+
+

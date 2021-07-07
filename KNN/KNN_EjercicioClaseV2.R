@@ -205,6 +205,7 @@ glimpse(heart)
 
 summary(heart)
 
+
 # Como estamos trabajando con datos médicos, es mejor ser conservativo
 # en cuanto a imputar valores nulos, así que los excluísmos.
 heart <- heart %>%
@@ -223,7 +224,7 @@ heart <- heart %>%
 
 #scatterplot usando ggplot2
 heart %>%
-  sample_n (20) %>%
+  sample_n (20) %>% #Samplen obtiene una muestra random, en este caso 20 obs
   ggplot(aes(x=cholesterol, 
              y=age, 
              color=heartDisease)
@@ -287,7 +288,7 @@ heart_pred1 <-
     train = heart_train,
     test = heart_test,
     cl = heart_train_labels,
-    k = 44
+    k = 47
   )
 
 # TOP 6

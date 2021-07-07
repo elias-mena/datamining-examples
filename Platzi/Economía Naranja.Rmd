@@ -1,0 +1,24 @@
+---
+title: "Economía Naranja"
+output: html_document
+---
+
+```{r}
+
+orangeec <- data.table::fread(file = "orangeec.csv")
+data(orangeec)
+summary(orangeec)
+
+```
+
+```{r}
+
+pairs(orangeec[,6:10])
+
+```
+
+```{r}
+library(ggplot2)
+
+```
+
