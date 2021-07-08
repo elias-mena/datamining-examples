@@ -1,22 +1,32 @@
 ---
-title: "Uber Trips"
+title: "Mi gasto en el servicio de Uber"
 author: "Elías Mena Segura"
-date: "7/5/2021"
 output: html_document
 ---
 ---
 
-## Depuración de los datos
-```{r message=FALSE}
-#Librerias a utilizar
-library(ggplot2)
-library(dplyr)
-library(plotly)
-library(lubridate)
-                  #---- Depuración de los datos ----
+# Introducción
 
-# Cargamos el archivo orignal y lo exploramos
+
+El siguiente laboratorio tiene como propósito sistematizar un proceso de recopilación, revisión y análisis de datos de mi cuenta de Uber Trips, en el proceso intentaremos responder preguntas y descubrir patrones/tendencias sobre el comportamiento de mi gasto en la plataforma, todo esto por medio del análisis estadístico y con ayuda del lenguaje de programación R. 
+
+
+---
+
+```{r include=FALSE}
+
+#Librerias a utilizar
+library(tidyverse) # Para manipular los datos
+library(ggplot2)   # Para graficar
+library(dplyr)     # Para manipular los datos
+library(plotly)    # Para grÃ¡ficos interactivos
+library(lubridate) # Para manejar las fechas
+
+                  #---- DepuraciÃ³n de los datos ----
+
 trips_data <- data.table::fread(file = "trips_data.csv")
+
+summary(trips_data)
 
 
 # Filtramos los datos para eliminar los viajes cancelados
@@ -37,7 +47,7 @@ ProductType <- filter_data$`Product Type`
 
 OrderStatus <- filter_data$`Trip or Order Status`
 
-Distance <- filter_data$`Distance (miles)`
+#Distance <- filter_data$`Distance (miles)`
 
 FareAmount <- filter_data$`Fare Amount`
 
@@ -48,23 +58,30 @@ RequestTimeDate <- filter_data$`Request Time`
 
 MonthName <- months(RequestTimeDate)
 
+MonthName <- sort(factor(MonthName, levels = month.name))
+
 DayOfWeek <- weekdays(RequestTimeDate)
 
 WeekOfYear <- paste(year(RequestTimeDate),week(RequestTimeDate),sep="-")
 
 # Creamos el data_frame
 clean_data <- data.frame(ProductType = ProductType, OrderStatus = OrderStatus,
-                         RequestTimeDate = RequestTimeDate, Distance = Distance,
+                         RequestTimeDate = RequestTimeDate, 
+                         #Distance = Distance,
                          FareAmount = FareAmount, FareCurrency = FareCurrency,
                          MonthName = MonthName, DayOfWeek = DayOfWeek,
                          WeekOfYear = WeekOfYear)
 
 ```
----
+
+
 # Análisis Exploratorio de Datos
 
-## Cantidad de viajes según el tipo de producto
-```{r}
+---
+
+### Cantidad de viajes según el tipo de producto
+```{r echo=FALSE}
+
 ggplotly(
   ggplot(clean_data,aes(x =ProductType, fill = ProductType))+
   geom_bar(fill="lightblue",color="black")+  
@@ -74,10 +91,16 @@ ggplotly(
   labs(x = "Product Type", y = "Número de viajes"))
 
 
+```
+
+
+Como podemos observar en el gráfico, la mayoría de mis viajes fueron en un UberX, y sólo un viaje en Uber Planet.
+
+
 ---
 
-## Porcentaje de viajes según el tipo de producto
-```{r}
+### Porcentaje de viajes según el tipo de producto
+```{r echo=FALSE, warning=FALSE}
 # Gráfico de porcentaje
 ggplot(clean_data, aes(x = ProductType)) +  
   geom_bar(aes(y = (..count..)/sum(..count..)),
@@ -87,16 +110,41 @@ ggplot(clean_data, aes(x = ProductType)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())+
   labs(x = "Product Type", y = "Porcentaje")
-ggplotly(ggplot(data=clean_data, aes(x=MonthName, y=FareAmount, group=1)) +
-  geom_path()+
-  geom_point())
-
 
 ```
+
+
+De acuerdo con el gráfico, el 95% de mis viajes fueron en UberX y el 5% fueron en Uber Planet.
+
+
 ---
 
-## Frecuencia de viajes según el día de la semana
-```{r}
+### Gráfico de tendencia
+
+```{r echo=FALSE}
+gasto_mensual <- clean_data %>% 
+  group_by(MonthName) %>%
+  dplyr::summarize( sum(FareAmount))
+
+
+# GrÃ¡fico lÃ­nea de tendencia
+ggplotly(ggplot(gasto_mensual, aes(x=MonthName, y=`sum(FareAmount)`, group=1)) +
+  geom_path()+
+  geom_point()+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  labs(x = "Month", y = "Expense"))
+```
+
+
+El gráfico de tendencia me indica que mis gastos han ido a la baja, en los últimos 2 meses he reducido mis gastos considerablemente.
+
+---
+
+
+### Frecuencia de viajes según el día de la semana
+```{r echo=FALSE}
 # Días
 ggplot(clean_data, aes(x = DayOfWeek, fill = DayOfWeek)) +
   geom_bar(width = 1, color="black")+ coord_polar()+
@@ -104,11 +152,16 @@ ggplot(clean_data, aes(x = DayOfWeek, fill = DayOfWeek)) +
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())+
   labs(x = "Day of Week", y = "Frecuency")
+
 ```
+
+
+De acuerdo con el gráfico, los días que uso el servicio con más frecuencia son los martes y viernes, y podemos apreciar que no suelo utilizar el servicio los fines de semana.
+
 ---
 
-## Frecuencia de viajes según el mes
-```{r}
+### Frecuencia de viajes según el mes
+```{r echo=FALSE}
 # Meses
 ggplot(clean_data, aes(x = MonthName, fill = MonthName)) +
   geom_bar(width = 1, color="black")+ coord_polar()+
@@ -117,6 +170,214 @@ ggplot(clean_data, aes(x = MonthName, fill = MonthName)) +
         panel.grid.minor = element_blank())+
   labs(x = "Day of Week", y = "Frecuency")
 ```
+
+
+Podemos ver que los datos de mi cuenta son de 4 meses a la fecha, ya que soy de una zona rural y me trasladé hace pocos meses a Alajuela, si nos fijamos en el gráfico, el mes de abril fue el que más utilicé el servicio, ya que no conocía muy bien los horarios del transporte público, pero a las semanas pude conocer la zona y viajar más en bus, por lo que los siguientes 2 meses mi gasto disminuyó.
+
+---
+
+# Análisis Estadístico
+
+---
+
+## 1. Tabla de frecuencia de las tarifas
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# FunciÃ³n para crear las tablas de frecuencia
+TableCreation <- function(y){
+  data.frame(table(y),
+             round(x = prop.table(x = table(y)) * 100, 1))
+}
+
+# Viendo un resumen de los datos vemos que el rango estÃ¡ entre
+# 900 y 4850, por lo que vamos a hacer 4 grupos entre ese rango 
+FareAmountGroups <- cut(clean_data$FareAmount,
+                        breaks = c(-Inf, 949, 1499, 2499, 3999,Inf),
+      labels = c("< 950", "950 - 1500", "1500 - 2500","2500-4000","4000+" ))
+
+tabla <- as.data.frame( TableCreation(FareAmountGroups))
+
+Rango <- tabla$y
+
+Frecuencia <- tabla$Freq
+
+Porcentaje <- tabla$Freq.1
+
+tablaFrecuencia <- data.frame(Rango, Frecuencia, Porcentaje)
+
+tablaFrecuencia
+
+```
+
+La tabla de frecuencia nos permite apreciar que la mayor concentración de las tarifas de mis viajes se encuentra en un rango de 1500 a 2500 colones, con 14 viajes, que representan un 60% del total.
+También podemos observar que el 26% (6 viajes) está en un rango de 950 a 1500 colones.
+Los viajes menores a 950 y mayores a 2500 se dan de forma ocasional, podemos ver que hay sólo 3 viajes fuera de los 2 rangos antes mencionados.
+
+---
+
+## 2. Medidas de distribución de las tarifas
+
+### a. Histograma
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplotly( ggplot(clean_data, aes(x = FareAmount)) + 
+  geom_histogram(fill="lightblue",color="black")+
+    theme(panel.background = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())+
+    labs(x = "Fare", y = "Frecuency"))
+```
+
+
+En este histograma podemos ver que la mayoría de nuestros datos se concentran en el rango de 900 a 2500 colones, y que tenemos 2 datos con montos mayores que nos están provocando sesgo en los datos.
+
+
+---
+
+### b. ¿Es una distribución normal? ¿Tiene asimetría?
+
+Tenemos una distribución sesgada hacia la izquierda (curva de asimetría positiva).
+
 ---
 
 
+### c. Gráfico QQNORM
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+qqnorm(clean_data$FareAmount)+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+---
+
+
+### d. Histograma de densidad
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplotly( ggplot(clean_data, aes(x = FareAmount)) + 
+            geom_histogram(aes(y = ..density..),
+                           fill="lightblue",color="black")+
+            theme(panel.background = element_blank(),
+                  panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank())+
+            labs(x = "Tarifa", y = "Densidad")+
+            geom_density(alpha=.2,fill="red"))
+
+```
+En este histograma podemos observar que la mayoría de mis viajes se concentran entre una tarifa de 1000 y 2000 colones.
+
+
+---
+
+## 3. Medidas de tendencia central y dispersión de las tarifas
+
+### a. Media y medidas de disperción
+
+```{r}
+
+MediaTarifa <- mean(clean_data$FareAmount)
+
+Varianza <- var(clean_data$FareAmount)
+# Po
+
+DesviacionEst <-sd(clean_data$FareAmount)
+
+`CoefVar(%)` <- (DesviacionEst/MediaTarifa)*100
+
+MedidasDisp <- data.frame(MediaTarifa, Varianza, 
+                          DesviacionEst,`CoefVar(%)`)
+MedidasDisp
+
+```
+
+
+La media de las tarifas es 1770 colones, en la siguiente tabla podemos observar que tenemos una desviación estandar de 736 y un coeficiente de variación de 41%, lo que evidencia una considerable disperción de los datos del promedio.
+
+
+---
+
+### b. Mediana y medidas de disperción
+
+```{r}
+summary(FareAmount)
+```
+La mediana de la tarifa de mis viajes es 1550, el rango de los datos se encuentra entre 900 y 4500, el primer cuartíl es 1450 y el tercero 1775.
+
+---
+
+### c. Moda
+
+```{r}
+mode <- function(x) {
+  return((names(which.max(table(x)))))
+}
+
+mode(clean_data$FareAmount)
+```
+
+
+La moda es 1550, ya que ese es el valor que más se repite en los datos de las tarifas, esto porque eso cuesta el viaje que regularmente suelo pedir.
+
+
+---
+
+## 4. ¿Cuánto es mi gasto promedio en el servicio de UBER?
+
+En mis datos hay un par de observaciones que generan sesgo, por lo que creo que la mejor forma de expresar mi gasto promedio sería con la moda (1550 por viaje), que es el monto que gasto en mis viajes regulares de Uber, también lo podría expresar con la tabla de frecuencia, donde vemos que alrededor del 86% de mis viajes son entre 950 y 2500 colones, observémoslo  de nuevo en la tabla.
+
+```{r echo=FALSE}
+tablaFrecuencia
+```
+
+
+---
+
+## 5. ¿Cuál es el promedio de gasto en la plataforma semanal?
+
+```{r}
+gasto_semanal <- clean_data %>% 
+  group_by(WeekOfYear) %>%
+  dplyr::summarize( sum(FareAmount))
+
+
+mean(gasto_semanal$`sum(FareAmount)`)
+
+```
+
+
+Mi gasto promedio en la plataforma semanalmente es de 3700 colones, y creo que este no sería un buen dato para presentar los resultados, ya que hubo una semana que gasté 900 y otra que gasté 9350, por lo que este promedio tiene mucho sesgo.
+
+---
+
+## 6. ¿Cuál es el promedio de gasto en la plataforma mensual?
+
+```{r}
+
+mean(gasto_mensual$`sum(FareAmount)`)
+
+```
+
+
+Mi gasto promedio en la plataforma mensualmente es de 10175 colones y creo que este tampoco sería un buen dato para representar mis gastos ya que tengo muy pocos datos. 
+
+
+---
+
+## 7. Moda de tipo de producto ¿Existe más de una moda?
+
+```{r}
+
+mode(clean_data$ProductType)
+```
+
+
+La moda es UberX, y sólo existe esta, ya que esta presente el 22 de las 23 observaciónes de los datos
+
+
+---
+
+# Conclusión
+
+---
