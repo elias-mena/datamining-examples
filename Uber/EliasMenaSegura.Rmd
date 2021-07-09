@@ -1,11 +1,13 @@
 ---
 title: "Mi gasto en el servicio de Uber"
 author: "Elías Mena Segura"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 ---
 
-# Introducción
+## Introducción
 
 
 El siguiente laboratorio tiene como propósito sistematizar un proceso de recopilación, revisión y análisis de datos de mi cuenta de Uber Trips, en el proceso intentaremos responder preguntas y descubrir patrones/tendencias sobre el comportamiento de mi gasto en la plataforma, todo esto por medio del análisis estadístico y con ayuda del lenguaje de programación R. 
@@ -75,7 +77,7 @@ clean_data <- data.frame(ProductType = ProductType, OrderStatus = OrderStatus,
 ```
 
 
-# Análisis Exploratorio de Datos
+## Análisis Exploratorio de Datos
 
 ---
 
@@ -176,11 +178,11 @@ Podemos ver que los datos de mi cuenta son de 4 meses a la fecha, ya que soy de 
 
 ---
 
-# Análisis Estadístico
+## Análisis Estadístico
 
 ---
 
-## 1. Tabla de frecuencia de las tarifas
+### 1. Tabla de frecuencia de las tarifas
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -275,12 +277,11 @@ En este histograma podemos observar que la mayoría de mis viajes se concentran 
 
 ### a. Media y medidas de disperción
 
-```{r}
+```{r echo=FALSE}
 
 MediaTarifa <- mean(clean_data$FareAmount)
 
 Varianza <- var(clean_data$FareAmount)
-# Po
 
 DesviacionEst <-sd(clean_data$FareAmount)
 
@@ -378,6 +379,10 @@ La moda es UberX, y sólo existe esta, ya que esta presente el 22 de las 23 obse
 
 ---
 
-# Conclusión
+## Conclusión
+
+
+Después del análisis de los datos pude concluir que los carros en los que más viajo es en los UberX, también que los martes y viernes suelo utilizar más el servicio, además pude notar que he disminuido mi gasto en comparación con los últimos 2 meses. En los histogramas noté que habían unas observaciones que generaban sesgo y hacían que hubiera mucha variabilidad en los datos, pero por medio de la moda pude concluir que mi gasto promedio en el servicio de Uber es de 1550 colones por viaje. 
+
 
 ---

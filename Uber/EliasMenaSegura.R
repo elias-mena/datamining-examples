@@ -182,14 +182,13 @@ ggplotly( ggplot(clean_data, aes(x = FareAmount)) +
 
 # Obtenemos media y las medidas de disperción
 
-mediaTarifa <- mean(clean_data$FareAmount)
+MediaTarifa <- mean(clean_data$FareAmount)
 
-VarianzaTarifa <- var(clean_data$FareAmount)
-# Po
+Varianza <- var(clean_data$FareAmount)
 
-desvEstTarifa <-sd(clean_data$FareAmount)
+DesviacionEst <-sd(clean_data$FareAmount)
 
-Coef <- (desvEstFA/mediaFA)*100
+`CoefVar(%)` <- (DesviacionEst/MediaTarifa)*100
 
 
 # 3.b
@@ -200,6 +199,12 @@ kurtosi(clean_data$FareAmount)/sqrt(6/23)
 
 
 # 3.c
+mode <- function(x) {
+  return((names(which.max(table(x)))))
+}
+
+
+mode(clean_data$FareAmount)
 
 # Punto 4
 
@@ -216,25 +221,12 @@ summary(gasto_semanal$`sum(FareAmount)`)
 
 # Punto 6
 
-summary(gasto_mensual$`sum(FareAmount)`)
+mean(gasto_mensual$`sum(FareAmount)`)
 
-ggplot(gasto_mensual, aes(x=`sum(FareAmount)`))+
-  geom_histogram()+
-  labs(x="Caballos de fuerza", y ="Cantidad de carros",
-       tittle="Caballos de fuerza en carros seleccionados")+
-  theme(legend.position = "none")+
-  theme(panel.background = element_blank(),
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank())
+
 # Punto 7
 
-mode <- function(x) {
-  return((names(which.max(table(x)))))
-}
 
 mode(clean_data$ProductType)
 
-mode(clean_data$FareAmount)
-
-summary(clean_data$FareAmount)
 
