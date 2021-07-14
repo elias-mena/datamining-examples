@@ -1,0 +1,18 @@
+Apple,10,9,Fruit
+Bacon,1,4,Protein
+Banana,10,1,Fruit
+Cabbage,1,10,Vegetable
+Carrot,7,10,Vegetable
+Celery,3,10,Vegetable
+Cheese,1,1,Protein
+Cucumber,3,7,Vegetable
+Fish,2,2,Protein
+Grape,10,5,Fruit
+Green Bean,4,6,Vegetable
+Lettuce,1,8,Vegetable
+Nuts,3,5,Protein
+Orange,9,2,Fruit
+Pear,10,6,Fruit
+Shrimp,2,2,Protein
+Strawberry,9,1,Fruit
+Tomato,6,4,Fruit

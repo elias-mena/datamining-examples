@@ -298,6 +298,7 @@ sms_dtm <- DocumentTermMatrix(sms_corpus_clean)
 # Mismo proceso de tokenization, pero sin 
 # el proceso de preparar la data y lo hacemos
 # con los parametros.
+#               HACER ASÍ
 sms_dtm2 <- DocumentTermMatrix(sms_corpus, 
                                control = list(
                                  tolower = TRUE,
