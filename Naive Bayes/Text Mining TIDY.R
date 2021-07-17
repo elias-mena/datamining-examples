@@ -21,7 +21,7 @@ text <- c("Because I could not stop for Death -",
           "and Immortality")
 
 text
-
+ # Se combierte a un tipo tidy
 text_df <- tibble(line = 1:4, text = text)
 
 text_df
@@ -41,6 +41,7 @@ original_books <- austen_books() %>%
 
 original_books
 
+# Tokenizar por row
 tidy_books <- original_books %>%
   tidytext::unnest_tokens(word, text)
 

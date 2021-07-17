@@ -344,7 +344,7 @@ prop.table(table(sms_test_labels))
 
 # Visualizar text data-words con
 # word cloud visualization
-wordcloud(sms_corpus_clean, 
+wordcloud(sms_corpus_clean, #Datos que más aparecen en el spam
           min.freq = 50, 
           random.order = FALSE)
 
@@ -459,7 +459,7 @@ CrossTable(sms_test_pred2,
            prop.r = FALSE,
            dnn = c('predicted', 'actual'))
 
-(((1201+153)/1390)*100)
+(((1189+167)/1390)*100)
 
 100 - (((16+18)/1390)*100)
 
