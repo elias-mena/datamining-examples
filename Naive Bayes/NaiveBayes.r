@@ -317,11 +317,11 @@ sms_dtm2
 # quitar los stopwords antes de crear términos
 sms_dtm3 <- DocumentTermMatrix(sms_corpus, 
                                control = list(
-  tolower = TRUE,
-  removeNumbers = TRUE,
-  stopwords = function(x) { removeWords(x, stopwords()) },
-  removePunctuation = TRUE,
-  stemming = TRUE
+    tolower = TRUE,
+    removeNumbers = TRUE,
+    stopwords = function(x) { removeWords(x, stopwords()) },
+    removePunctuation = TRUE,
+    stemming = TRUE
 ))
 
 # compare the result

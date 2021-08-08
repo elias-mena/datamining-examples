@@ -1,0 +1,60 @@
+ID,Post,Sentimiento
+1,Ayer nos instalaron el servicio los muchachos muy que lo hicieron muy Buenos en su trabajo en mi casa fue complicado y difícil cambiar el cable,Positivo
+3,Bueno por mi casa yo tengo Tigo y nada que ver nada que ver es una cochinada cada rato se va el cable,Negativo
+4,Y ese chat en línea no sirve para nada,Negativo
+5,100% recomiendo,Positivo
+6,Vinieron y me cambiaron la caja y todo quedé excelente  gracias,Positivo
+7,El poco de promociones pero nada que arreglan el internet llevo 6 días sin internet y solo saben decir que tienen un falla a nivel de todo pero deberían de preocuparse también por arreglar eso ya que hay personas (me incluyo) que trabajamos con el,Negativo
+9,Todas duplicaron el internet y Tigo no  todas tienen FUTV y Tigo no  o sea que estamos esperando para pasarnos,Negativo
+10,Sí  mucha jugadera con el cliente  El único consejo es salirse a fin de mes  porque cobran el mes completo  así sea que se salga el día 1 del mes,Negativo
+11,El mismo cuento para todos x inbox y no resuelven nada,Negativo
+13,La misma hablada que se han pegado siempre  Lo mejor que pueden anunciar es que cierra la empresa y todos felices,Negativo
+14,Eso lo están diciendo desde hace días y no dan ninguna respuesta  Yo tomé la decisión de cambiarme a otra empresa,Negativo
+15,ya estamos cansados de lo mismo   Ya llevan rato diciendo lo mismo,Negativo
+16,Ya cansan con la misma historia y no dan respuestas ni soluciones y faltando 3 días para que inicie transmisiones FUTV ustedes siguen burlándose de los clientes que aun quedan,Negativo
+17,Yo he tratado de comunicarme con Tigo   que debo hacer para cancelar el contrato con ustedes,Negativo
+18,HE tenido un buen servicio de Tigo y espero seguir teniendolo  espero tener buenas noticias pronto,Positivo
+19,O ponen FUT TV o voy jalando de tigo tras que son malísimos los servicios y lo que se paga mejor voy pensando seriamente de aquí al lunes si no hay respuesta de que agregan el canal me cambio seriamente de cablera,Negativo
+20,Entonces porque están esperando que los clientes se vayan a otra Cablera? O asea los están vacilando,Negativo
+21,Su servicio es pésimo  todos los meses tengo problemas graves con mi servicio no logran resolverlo  pésimo servicio me siento estafado,Negativo
+22,soy cliente de hace más de 10 años y en mi opinión personal siempre han tenido un muy buen servicio de internet y tv x cable,Positivo
+23,Excelente Tigo,Positivo
+24,Los beneficios que me da Tigo en ningún otra cablera la he tenido,Positivo
+25,Es un pega demaciada mala la señal y tras de eso ladrones le roban el muserable pago a los vendedores y tras de eso es una mugre la comision ladrones,Negativo
+26,Ojalá puedan arreglar algo con ese Futv porque la verdad el servicio de ustedes acá ha sido excelente al igual que el internet,Positivo
+27,Tengo una excelente señal y excelente internet y es muy muy real,Positivo
+28,Excelente Amazon prime  Gracias,Positivo
+29,exelente plataforma prime y en 4k dolby digital 5 1  full calidad y cobre increible,Positivo
+30,exelente plataforma prime y en 4k dolby digital 5 1  full calidad y cobre increible,Positivo
+31,Perdón pero que pésimo servicio el de ustedes  por lo menos 3 veces a la semana el módem descodificado y prácticamente todos los días,Negativo
+32,el internet está pésimo,Negativo
+33,Tigo desde hace muchoo tiempo atras   Es una porquería,Negativo
+34,exelente recomendado,Positivo
+35,Eso es propio de una empresa poco comprometida con el servicio que ofrecen!!!,Negativo
+36,cambio de cablera el servicio de tigo es pésimo,Negativo
+37,Correcto es una repetición para todas las personas en Tigo lo que hacen es engañar a los clientes a cómo van se van a quedar solos x mentirosos,Negativo
+38,Una cablera sin sentido  de pronto me quitan canales HD sin darme razón alguna del porque la situación,Negativo
+39,Pésimo servicio de internet,Negativo
+40,Yo si recomiendo a TIGO  porque es muy estable tanto el Internet como la TV,Positivo
+41,Tigo es un atraso  pésimo servicio  nada de palabra,Negativo
+42,culpa de este mal servicio y llevar días sin poder ver tele ni internet  la sinvergüezada es q cobran la misma tarifa,Negativo
+43,cómo siempre se va la señal y tiene fallas tigo es la peor compañía de cable e Internet,Negativo
+44,Ese mismo día estaré poniendo la renuncia del servicio    Tal parece que los clientes no valen nada para esta compañía,Negativo
+45,además de llamar para cancelar el servicio sería bueno enviar un correo a TIGO donde se especifica que hasta ese día se quiere el servicio  para que quede constancia que se quiere abandonar la cablera y no pagar un mes más,Negativo
+46,Diay mae  no tengo nada malo que decir de Tigo  El servicio es excelente,Positivo
+47,Durante años siempre he sido Tigo y me he sentido satisfecho,Positivo
+48,Una falta total de respeto hacia uno como cliente  La queja a la SUTEL ya esta en proceso  porque me canse de escuchar mentiras,Negativo
+49,He tenido montones de inconvenientes con el internet ?? de 100mb?? patrañas    no sirven para nada,Negativo
+50,Y parece que están sin técnicos porque llevo semana y media esperando ayuda técnica    Y no dan el servicio de internet que uno paga     fatal,Negativo
+51,Lo malo es que Tigo es pésimo    ya vamos por tres días sin internet,Negativo
+52,Gracias por el resumen mil gracias q éxito,Positivo
+53,Realmente es cansando no estar una sola semana sin fallos en el servicio    Dejan mucho que desear,Negativo
+54,es una cochinada de cablera  le recomiendo que se pase porque a nosotros nos estafaron con el Internet  nos decía que era de más capacidad cuando en realidad es menor,Negativo
+55,Me pasé de condominio y cometí en grave error de poner tigo y en 6 meses ya es la cuarta ocacion que tengo problema se cable e internet     Será volver a cabletica,Negativo
+56,Excelente  excelente,Positivo
+57,No tienen ni idea del problema    Vergüenza es lo que dan,Negativo
+58,NO sean descarados acá en sabana no hay Internet ni nada    Perderán un cliente el día 30    Asi como cobran de caro mejor me iré a otra compañía y mejor calidad,Negativo
+59,Terrible cada vez menos canales  el Internet malo y suben los precios demasiado caro para tan mal servicio de canales,Negativo
+60,Internet terrible en Moravia lo digo con la famosa voz que se va y viene que se vuelve a ir,Negativo
+61,Yo tengo tres años y nunca me ha fallado,Positivo
+63,Solo saben decir que Tigo es todo lo que te mueve mas ganas de quitar esto es lo que mueven,Negativo
